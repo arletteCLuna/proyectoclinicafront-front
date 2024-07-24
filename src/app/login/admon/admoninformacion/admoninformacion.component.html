@@ -1,0 +1,64 @@
+<app-headeradmon></app-headeradmon>
+
+<div class="actualizar-informacion-container">
+  <h2 style="text-align: center;">Actualizar Información</h2>
+
+  <form [formGroup]="updateInformacionForm" (ngSubmit)="onSubmit()" class="informacion-form">
+    <div class="form-group">
+      <label for="quienessomos">Quiénes somos:</label>
+      <textarea formControlName="quienessomos" id="quienessomos" placeholder="Ingrese la nueva descripción de quiénes somos"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="mision">Misión:</label>
+      <textarea formControlName="mision" id="mision" placeholder="Ingrese la nueva misión"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="vision">Visión:</label>
+      <textarea formControlName="vision" id="vision" placeholder="Ingrese la nueva visión"></textarea>
+    </div>
+   
+    <button type="submit" class="btn-actualizar">Actualizar Información</button>
+  </form>
+</div>
+<style>
+
+.actualizar-informacion-container {
+  margin-top: 20px;
+}
+
+.informacion-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+</style>

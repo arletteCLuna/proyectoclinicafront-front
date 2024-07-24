@@ -1,0 +1,19 @@
+<app-headerpublico></app-headerpublico>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes - Clínica Dental</title>
+  <link rel="stylesheet" href="preguntaspublico.component.css">
+</head>
+  
+<body>
+
+  <div *ngFor="let pregunta of preguntas">
+      <h3>{{ pregunta.preguntas }}</h3>
+      <p>{{ pregunta.respuestas }}</p>
+    </div>
+    
+    
+    <app-footerpublico></app-footerpublico>
+ 
+</body>

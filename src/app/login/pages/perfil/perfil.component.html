@@ -1,0 +1,97 @@
+<app-header class="header"></app-header>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<h1 class="title">INFORMACIÓN DEL PERFIL</h1><br>
+
+<div class="profile-info">
+     <div class="container">
+          <div class="row justify-content-center">
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="form-Label">Nombre: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.nombre" />
+                    </div>
+               </div>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="form-Label">Apellido Paterno: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.apellidop" />
+                    </div>
+               </div>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="form-Label">Apellido Materno: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.apellidom" />
+                    </div>
+               </div>
+               <br><br>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="div input-group">Correo Electrónico: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.email" />
+                    </div>
+               </div>
+
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="div input-group">Fecha de nacimiento: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.fecha" />
+                    </div>
+               </div>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="div input-group">Nombre de usuario: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.nombreu" />
+                    </div>
+               </div>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="div input-group">Teléfono: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.telefono" />
+                    </div>
+               </div>
+               <div class="col-sm-4">
+                    <div class="mb-3" form-group>
+                         <label class="div input-group">Sexo: </label>
+                         <input type="text" readonly="" class="form-control" [value]="dataUser.sexo" />
+                    </div>
+               </div>
+
+
+
+          </div>
+
+
+     </div>
+
+     <button routerLink="/user/editarperfil" class="edit-button">Editar perfil</button>
+
+     <app-footer class="footer"></app-footer>
+
+
+
+     <style>
+          .title {
+               text-align: center;
+               color: #333;
+               font-size: 28px;
+               margin-top: 20px;
+               font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          }
+
+          .edit-button {
+               background-color: #007bff;
+               color: white;
+               border: none;
+               border-radius: 5px;
+               padding: 10px 20px;
+               cursor: pointer;
+               display: block;
+               margin: 20px auto;
+          }
+
+          .edit-button:hover {
+               /* Estilos al pasar el mouse sobre el botón de editar perfil */
+               background-color: #0056b3;
+          }
+     </style>

@@ -1,0 +1,134 @@
+<app-header></app-header>
+
+<div>
+  <h1 class="title-cards">Lista de Servicios</h1>
+  <div class="container-card" *ngIf="servicios.length > 0; else noServices">
+    <div *ngFor="let servicio of servicios" class="card">
+      <img [src]="servicio.imagen" alt="{{ servicio.nombre }}">
+      <div class="contenido-card">
+        <h3>{{ servicio.nombre }}</h3>
+        <p>Costo: {{ servicio.costo | currency }}</p>
+        <p>Descripción: {{ servicio.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noServices>
+    <p>No hay servicios disponibles.</p>
+  </ng-template>
+</div>
+
+<app-footer></app-footer>
+
+<style>
+
+    /* General Styles */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Container */
+.container-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Title */
+.title-cards {
+  text-align: center;
+  color: #646363;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  transition: all 400ms ease-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
+}
+
+.card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.contenido-card {
+  padding: 15px;
+  text-align: center;
+}
+
+.contenido-card h3 {
+  color: #535151;
+  margin-bottom: 15px;
+}
+
+.contenido-card p {
+  line-height: 1.8;
+  color: #6a6a6a;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Responsive Styles */
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .container-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Button Styles */
+.btn {
+  color: #1367c2;
+  text-decoration: none;
+  border: 2px solid #1367c2;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  color: white;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background-color: #1367c2;
+  z-index: -1;
+  transition: all 1s;
+}
+
+.btn:hover::before {
+  width: 160%;
+}
+
+      
+</style>

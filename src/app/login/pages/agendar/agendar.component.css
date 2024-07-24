@@ -1,0 +1,96 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-wrapper {
+  background-color: #a0b7ee9a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+input[type="date"],
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.valid-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.valid-button:hover {
+  background-color: #0056b3;
+}
+
+.invalid-button {
+  background-color: #757575;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: not-allowed;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+
+
+/* Estilos responsivos */
+@media screen and (max-width: 600px) {
+  form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-group {
+    flex: 100%;
+
+  }
+}
+
+.animated-label {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  transition: all 0.2s ease-out;
+  font-size: 14px;
+  color: #ffffff;
+  pointer-events: none;
+  background-color: #fff;
+  padding: 0 5px;
+}
+
+
+
+/* Ajuste para el ancho de los campos en dispositivos móviles */
+@media (max-width: 768px) {
+  .form-group {
+    width: 100%;
+  }
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial de Citas</title>
+  <link rel="stylesheet" href="historial.component.css"> <!-- Include your CSS file -->
+</head>
+
+<body>
+  <app-header class="header"></app-header>
+
+  <div *ngIf="citas.length > 0" class="container">
+    <h1 style="text-align: center;">Historial de Citas</h1>
+    <table>
+      <tr>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Motivo</th>
+        <th>Dentista</th>
+        <th>Estado</th>
+      </tr>
+      <tr *ngFor="let cita of citas">
+        <td>{{ cita.fecha }}</td>
+        <td>{{ cita.hora }}</td>
+        <td>{{ cita.motivo }}</td>
+        <td>{{ cita.dentista }}</td>
+        <td>Pendiente</td> <!-- Assuming the status is always "Pasado" for historical citas -->
+      </tr>
+    </table>
+  </div>
+  
+  <div *ngIf="citas.length === 0" class="container">
+    <p>No hay citas disponibles.</p>
+  </div>
+
+  <app-footer class="footer"></app-footer>
+</body>
+
+</html>

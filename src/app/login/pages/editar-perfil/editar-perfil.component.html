@@ -1,0 +1,264 @@
+<app-header></app-header>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<h1 class="title">EDITAR PERFIL</h1>
+<!-- FORMULARIO PARA EDITAR LA INFORMACION DEL PERFIL  -->
+<!-- LO QUE SE PUEDE EDITAR SERA NOMBRE,APELLIDO PATERNO, APELLIDO MATERNO, CORREO ELECTRONICO
+FECHA DE NACIMIENTO, NOMBRE DE USUARIO, TELEFONO, SEXO -->
+<form [formGroup]="myForm" (submit)="updateData()">
+
+
+
+  <div class="profile-info">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- NOMBRE -->
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="form-Label">Nombre: </label>
+            <input formControlName="nombre" type="text" class="form-control" [value]="dataUser.nombre" />
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text custom-icon-bg"
+              *ngIf="myForm.get('nombre')?.valid && myForm.get('nombre')?.touched">
+            </span>
+            <span *ngIf="myForm.get('nombre')?.invalid && myForm.get('nombre')?.touched">
+            </span>
+          </div>
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger" *ngIf="myForm.get('nombre')?.invalid && myForm.get('nombre')?.touched">
+            <i class="fas fa-exclamation-circle"></i> Nombre es un campo obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('nombre')?.hasError('minlength') && myForm.get('nombre')?.touched">
+            <i class="fas fa-exclamation-circle"></i>Debe tener al menos 3 caracteres.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('nombre')?.hasError('pattern') && myForm.get('nombre')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El nombre no debe contener números.
+          </div>
+        </div>
+
+        <!-- APELLIDO PATERNO-->
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="form-Label">Apellido Paterno: </label>
+            <input formControlName="apellidop" type="text" class="form-control" [value]="dataUser.apellidop" />
+          </div>
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidop')?.hasError('required') && myForm.get('apellidop')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidop')?.hasError('minlength') && myForm.get('apellidop')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El apellido paterno debe tener al menos 3 caracteres.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidop')?.hasError('pattern') && myForm.get('apellidop')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El apellido no debe contener números.
+          </div>
+
+        </div>
+
+
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="form-Label">Apellido Materno: </label>
+            <input type="text" formControlName="apellidom" class="form-control" [value]="dataUser.apellidom" />
+          </div>
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidom')?.hasError('required') && myForm.get('apellidom')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidom')?.hasError('minlength') && myForm.get('apellidom')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El apellido materno debe tener al menos 3 caracteres.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('apellidom')?.hasError('pattern') && myForm.get('apellidom')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El apellido no debe contener números.
+          </div>
+
+        </div>
+
+
+        <div style="margin-bottom: 60px;">
+          <div class="col-sm-4">
+            <div class="mb-3" form-group>
+              <label class="div input-group">Correo Electrónico: </label>
+              <input type="text" formControlName="email" class="form-control" [value]="dataUser.email" />
+            </div>
+            <!-- MENSAJES DE ERROR -->
+            <div class="error-message text-danger"
+              *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+              <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+            </div>
+            <div class="error-message text-danger"
+              *ngIf="myForm.get('email')?.hasError('pattern') && myForm.get('email')?.touched">
+              <i class="fas fa-exclamation-circle"></i>Por favor, ingrese un correo electrónico válido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="div input-group">Fecha de nacimiento: </label>
+            <input formControlName="fecha" type="date" class="form-control" id="campoFechaNacimiento" required
+              [value]="dataUser.fecha">
+            <div class="input-group-append">
+              <span class="input-group-text custom-icon-bg"
+                *ngIf="myForm.get('fecha')?.valid && myForm.get('fecha')?.touched">
+
+              </span>
+              <span *ngIf="myForm.get('fecha')?.invalid && myForm.get('fecha')?.touched">
+              </span>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('fecha')?.hasError('required') && myForm.get('fecha')?.touched">
+            <i class="fas fa-exclamation-circle"></i> El campo es obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('fecha')?.hasError('futureDate') && myForm.get('fecha')?.touched">
+            <i class="fas fa-exclamation-circle"></i> La fecha no puede ser del futuro.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('fecha')?.hasError('underage') && myForm.get('fecha')?.touched">
+            <i class="fas fa-exclamation-circle"></i> La persona debe ser mayor de 18 años.
+          </div>
+        </div>
+
+
+
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="div input-group">Nombre de usuario: </label>
+            <input type="text" formControlName="nombreu" class="form-control" [value]="dataUser.nombreu" />
+          </div>
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('nombreu')?.hasError('required') && myForm.get('nombreu')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('nombreu')?.hasError('minlength') && myForm.get('nombreu')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El nombre de usuario debe tener al menos 5 caracteres.
+          </div>
+
+        </div>
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="div input-group">Teléfono: </label>
+            <input type="text" formControlName="telefono" class="form-control" [value]="dataUser.telefono" />
+          </div>
+          <!-- MENSAJES DE ERROR -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('telefono')?.hasError('required') && myForm.get('telefono')?.touched">
+            <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+          </div>
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('telefono')?.hasError('pattern') && myForm.get('telefono')?.touched">
+            <i class="fas fa-exclamation-circle"></i>Por favor, ingrese un número de teléfono válido (10 dígitos).
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="mb-3" form-group>
+            <label class="div input-group">Sexo: </label>
+            <select formControlName="sexo" class="form-control" id="campoSexo" (change)="mostrarSeleccion($event)"
+              [value]="dataUser.sexo">
+              <option value="" disabled selected>Selecciona</option>
+              <option value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+            </select>
+
+          </div>
+          <!-- Mensajes de error -->
+          <div class="error-message text-danger"
+            *ngIf="myForm.get('sexo')?.hasError('required') && myForm.get('sexo')?.touched">
+            <i class="fas fa-exclamation-circle"></i> El campo es obligatorio.
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+
+    <button [disabled]="" type="submit" class="edit-button">GUARDAR CAMBIOS</button>
+
+
+
+  </div>
+</form>
+
+
+<app-footer></app-footer>
+<style>
+  .my-form {
+
+    margin-top: 20px;
+  }
+
+  .title {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .edit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+  }
+
+  /* Estilos específicos para los inputs */
+  .form-control {
+    /* Estilos comunes para los campos de entrada */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  /* Estilos para las etiquetas de los campos */
+  label {
+    font-weight: bold;
+  }
+
+  /* Estilos para los botones */
+  button {
+    /* Estilos comunes para los botones */
+    padding: 8px 20px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Estilos para los botones cuando se les aplica :hover */
+  button:hover {
+    background-color: #0056b3;
+  }
+</style>

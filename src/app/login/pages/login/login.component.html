@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+  <app-headerpublico></app-headerpublico>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="login.component.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+  <div class="contenedor">
+
+    <div class="wrapper">
+      <div class="title">Inicio de Sesión</div>
+      <img [src]="logosinfondo" alt="Logo">
+
+      <form (submit)="auth()" [formGroup]="myForm" style="display: flex; flex-direction: column;">
+
+        <!-- CORREO ELECTRÓNICO -->
+        <div class="field">
+          <input type="email" formControlName="email" id="campoEmail" required (focus)="moveLabelUp()"
+            (blur)="moveLabelDown()" (keyup)="handleKeyUp()">
+          <label>Correo Electrónico</label>
+          <div class="input-group-append">
+            <span *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+            </span>
+          </div>
+        </div>
+        <!-- MENSAJES DE ERROR -->
+        <div class="error-message text-danger"
+          *ngIf="myForm.get('email')?.hasError('required') && myForm.get('email')?.touched">
+          <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+        </div>
+        <div class="error-message text-danger"
+          *ngIf="myForm.get('email')?.hasError('pattern') && myForm.get('email')?.touched">
+          <i class="fas fa-exclamation-circle"></i>Por favor, ingrese un correo electrónico válido.
+        </div>
+
+
+        <!-- CONTRASEÑA -->
+        <div class="field">
+          <input formControlName="contrasena" [type]="passwordVisible ? 'text' : 'password'" id="contrasena" required
+            (focus)="moveLabelUp()" (blur)="moveLabelDown()">
+          <label for="contrasena">Contraseña</label>
+          <span class="toggle-password" (click)="togglePasswordVisibility()">
+            <i class="fas fa-eye" *ngIf="!passwordVisible"></i>
+            <i class="fas fa-eye-slash" *ngIf="passwordVisible"></i>
+          </span>
+        </div>
+        <!-- MENSAJES DE ERROR -->
+        <div class="error-message text-danger"
+          *ngIf="myForm.get('contrasena')?.hasError('required') && myForm.get('contrasena')?.touched">
+          <i class="fas fa-exclamation-circle"></i>El campo es obligatorio.
+        </div>
+        <div class="error-message text-danger"
+          *ngIf="myForm.get('contrasena')?.hasError('pattern') && myForm.get('contrasena')?.touched">
+          <i class="fas fa-exclamation-circle"></i>La contraseña debe contener al menos 8 caracteres, incluyendo
+          mayúsculas, minúsculas, números y 2 caracteres especiales.
+        </div>
+
+
+        <!-- CAPTCHA -->
+        <ngx-recaptcha2 (success)="activarBtnCapcha($event)" class="captcha" #captchaElem
+          [siteKey]="siteKey"></ngx-recaptcha2>
+
+
+        <div class="content">
+          <div>
+            <label for="">¿Olvidaste tu contraseña?</label>
+          </div>
+
+          <div class="pass-link">
+            <a href="#" routerLink="/user/recuperar-password" routerLinkActive="active-link"
+              (mouseenter)="aplicarInterlineado()">Recuperar</a>
+          </div>
+        </div>
+
+
+        <!-- eventos del mouse -->
+
+        <div class="botonIniciar" [ngClass]="{'resaltado': resaltarInput}">
+          <input id="register" type="submit" [disabled]="myForm.invalid || validRecatcha" value="Iniciar sesión">
+        </div>
+
+
+
+        <script>
+          function cambiarColor() {
+            document.getElementById("register").style.backgroundColor = "yellow"; // Cambia el color de fondo a amarillo
+            document.getElementById("register").style.color = "red"; // Cambia el color del texto a rojo
+          }
+        </script>
+
+
+        <p style="font-weight: bold;"> ¿No tienes una cuenta?</p>
+
+        <a id="register" [routerLink]="['/user/crear-cuenta']" routerLinkActive="active-link">
+          Registrarse
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>

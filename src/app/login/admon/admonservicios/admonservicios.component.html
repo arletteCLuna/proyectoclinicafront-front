@@ -1,0 +1,121 @@
+<app-headeradmon></app-headeradmon>
+
+<div class="servicios-container">
+  <h2>Servicios:</h2>
+
+  <ul class="servicios-list">
+    <li *ngFor="let servicio of servicios" class="servicio-item">
+      <img [src]="servicio.imagen" alt="" style="height: 100px;"> - {{ servicio.nombre }} - {{ servicio.descripcion }} - {{ servicio.costo | currency }}
+      <button class="btn-editar" (click)="editarServicio(servicio)">Editar</button>
+      <button class="btn-eliminar" (click)="eliminarServicio(servicio.id_servicio)">Eliminar</button>
+    </li>
+  </ul>
+
+  <div *ngIf="editMode" class="formulario-edicion">
+    <h3>Editar Servicio</h3>
+    <form [formGroup]="servicioForm" (submit)="guardarEdicion()" class="servicio-form">
+      <input type="hidden" formControlName="id_servicio">
+
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" formControlName="descripcion">
+
+      <label for="costo">Costo:</label>
+      <input type="number" id="costo" formControlName="costo">
+
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  </div>
+
+  <div class="agregar-servicio">
+    <h3>Agregar Nuevo Servicio</h3>
+    <form [formGroup]="servicioForm" (submit)="agregarServicio()" class="servicio-form" *ngIf="!editMode">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" formControlName="descripcion">
+
+      <label for="costo">Costo:</label>
+      <input type="number" id="costo" formControlName="costo">
+
+      <label for="imagen">imagen:</label>
+      <input type="file" id="costo" (change)="addImg($event)">
+
+      <button type="submit" class="btn-agregar">Agregar</button>
+    </form>
+  </div>
+</div>
+
+<style>
+
+.servicios-container {
+  margin-top: 20px;
+}
+
+.servicios-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.servicio-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-editar, .btn-eliminar {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #f44336;
+  color: white;
+}
+
+.formulario-edicion {
+  margin-top: 20px;
+}
+
+.servicio-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicio-form label {
+  margin-bottom: 5px;
+}
+
+.servicio-form input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.btn-guardar, .btn-agregar {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-agregar {
+  background-color: #008CBA;
+  color: white;
+}
+
+</style>

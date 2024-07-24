@@ -1,0 +1,29 @@
+<app-headeradmon></app-headeradmon>
+<link rel="stylesheet" href="admoncitas.component.css">
+<!-- admoncitas.component.html -->
+<div *ngIf="dataCita && dataCita.length > 0">
+  <h2>Listado de Citas</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Dentista</th>
+        <th>Motivo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cita of dataCita">
+        <td>{{ cita.usuario?.nombre }}</td>
+        <td>{{ cita.fecha }}</td>
+        <td>{{ cita.hora }}</td>
+        <td>{{ cita.dentista }}</td>
+        <td>{{ cita.motivo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!dataCita || dataCita.length === 0">
+  <p>No hay citas disponibles.</p>
+</div>
