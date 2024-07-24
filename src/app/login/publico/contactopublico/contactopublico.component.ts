@@ -1,4 +1,5 @@
-import { Component, importProvidersFrom, OnInit } from '@angular/core';
+// contactopublico.component.ts
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { DataContacto } from '../../interfaces/dataContacto.interface';
@@ -14,20 +15,19 @@ export class ContactopublicoComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
-
   ngOnInit() {
-
     this.agregarContactoForm = this.fb.group({
       nombre: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       mensaje: ['', Validators.required],
     });
   }
+
   agregarContacto() {
-    const nuevaContacto= this.agregarContactoForm.value;
+    const nuevaContacto = this.agregarContactoForm.value;
     this.loginService.createContacto(nuevaContacto).subscribe(
       (response) => {
-        console.log('nueva Contacto creada correctamente:', response);
+        console.log('Nuevo contacto creado correctamente:', response);
         this.agregarContactoForm.reset();
       },
       (error) => {

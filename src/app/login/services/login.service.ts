@@ -25,8 +25,8 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
 
-  url:string = 'http://localhost:3000/'
-  //url:string = 'https://proyectoclinicaback-back-production.up.railway.app/'
+  //url:string = 'http://localhost:3000/'
+  url:string = 'https://proyectoclinicaback-back-production.up.railway.app/'
 
   //usuario
   getUserByEmail(emai:string){
